@@ -1,0 +1,260 @@
+/* ==========================================
+   NAVBAR BASE
+========================================== */
+
+.navbar {
+    height: 80px;
+    padding: 18px 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    margin: 15px;
+
+    border-radius: 18px;
+
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* ==========================================
+   LEFT
+========================================== */
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex: 1;
+}
+
+.logo-text {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.menu-btn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+
+    padding: 10px;
+    border-radius: 10px;
+
+    transition: 0.3s;
+}
+
+.menu-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================
+   CENTER SEARCH
+========================================== */
+
+.navbar-center {
+    flex: 1.8;
+    display: flex;
+    justify-content: center;
+}
+
+.search-box {
+    width: 100%;
+    max-width: 420px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px 14px;
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    transition: 0.3s;
+}
+
+.search-box:focus-within {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+}
+
+.search-icon {
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+.search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+
+    background: transparent;
+    color: #fff;
+
+    font-size: 14px;
+}
+
+.search-box input::placeholder {
+    color: #64748b;
+}
+
+/* clear icon */
+.clear-icon {
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.clear-icon:hover {
+    color: #ef4444;
+}
+
+/* ==========================================
+   RIGHT SIDE
+========================================== */
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+/* NOTIFICATION */
+.notification-btn {
+    position: relative;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    border: none;
+    cursor: pointer;
+
+    color: #fff;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    transition: 0.3s;
+}
+
+.notification-btn:hover {
+    background: rgba(99, 102, 241, 0.2);
+    transform: translateY(-2px);
+}
+
+.notification-badge {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+
+    width: 18px;
+    height: 18px;
+
+    background: #ef4444;
+    color: #fff;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* USER */
+.navbar-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 8px 12px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    background: transparent;
+}
+
+.navbar-user:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.navbar-avatar {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(135deg, #6366f1, #06b6d4);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 700;
+    color: #fff;
+}
+
+.user-info h4 {
+    font-size: 14px;
+    color: #fff;
+    margin: 0;
+}
+
+.user-info span {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 992px) {
+
+    .navbar-center {
+        display: none;
+    }
+
+    .logo-text {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .navbar {
+        padding: 14px 18px;
+    }
+
+    .user-info {
+        display: none;
+    }
+
+    .navbar-right {
+        gap: 10px;
+    }
+}

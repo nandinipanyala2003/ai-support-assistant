@@ -1,0 +1,60 @@
+.fadeIn{
+
+    animation:fadeIn .4s ease;
+}
+
+.slideUp{
+
+    animation:slideUp .5s ease;
+}
+
+.pop{
+
+    animation:pop .3s ease;
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+    }
+
+    to{
+
+        opacity:1;
+    }
+
+}
+
+@keyframes slideUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes pop{
+
+    from{
+
+        transform:scale(.9);
+    }
+
+    to{
+
+        transform:scale(1);
+    }
+
+}
