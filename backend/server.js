@@ -13,19 +13,38 @@ const app = require("./app");
 
 const server = http.createServer(app);
 
-// ==========================
+// =====================================
 // SOCKET.IO
-// ==========================
+// =====================================
+
 const io = new Server(server, {
+
     cors: {
-        origin: "http://localhost:5173",
+
+        origin: [
+            "http://localhost:5173",
+            "https://ai-support-assistant-is6k.vercel.app"
+        ],
+
         credentials: true,
-        methods: ["GET", "POST"]
+
+        methods: [
+            "GET",
+            "POST"
+        ]
+
     },
-    transports: ["websocket", "polling"]
+
+    transports: [
+        "websocket",
+        "polling"
+    ]
+
 });
 
 app.set("io", io);
+
+// =====================================
 
 io.on("connection", (socket) => {
 
@@ -35,31 +54,33 @@ io.on("connection", (socket) => {
 
         socket.join(ticketId);
 
-        console.log("📂 Joined Ticket:", ticketId);
+        console.log("Joined:", ticketId);
 
     });
 
     socket.on("send_message", (data) => {
 
-        io.to(data.ticketId).emit("receive_message", data);
+        io.to(data.ticketId).emit(
+            "receive_message",
+            data
+        );
 
     });
 
     socket.on("disconnect", () => {
 
-        console.log("🔴 Socket Disconnected:", socket.id);
+        console.log("Socket Disconnected");
 
     });
 
 });
 
-// ==========================
-// START SERVER
-// ==========================
+// =====================================
+
 const PORT = process.env.PORT || 5000;
 
 server.listen(PORT, () => {
 
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
+    console.log(`🚀 Server Running on ${PORT}`);
 
 });
