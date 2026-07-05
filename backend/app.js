@@ -18,30 +18,31 @@ const app = express();
 // =====================================
 
 const allowedOrigins = [
-    "http://localhost:5173",
-
-    "https://ai-support-assistant-is6k.vercel.app",
-
-    "https://ai-support-assistant-py9mtj26p-nandini-panyalas-projects.vercel.app"
+    "http://localhost:5173"
 ];
 
 app.use(
     cors({
         origin(origin, callback) {
 
+            // Postman / Render health checks
             if (!origin) {
                 return callback(null, true);
             }
 
+            // Localhost
             if (allowedOrigins.includes(origin)) {
                 return callback(null, true);
             }
 
-            console.log("Blocked Origin :", origin);
+            // Allow all Vercel deployments
+            if (origin.endsWith(".vercel.app")) {
+                return callback(null, true);
+            }
 
-            return callback(
-                new Error("Origin Not Allowed")
-            );
+            console.log("Blocked Origin:", origin);
+
+            return callback(new Error("Origin Not Allowed"));
         },
 
         credentials: true,
