@@ -19,7 +19,7 @@ const app = express();
 
 const allowedOrigins = [
     "http://localhost:5173",
-    "https://ai-support-assistant-is6k.vercel.app"
+    "https://ai-support-assistant-is6k.vercel.app",
 ];
 
 app.use(
