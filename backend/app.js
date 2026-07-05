@@ -24,8 +24,9 @@ const allowedOrigins = [
 
 app.use(
     cors({
-        origin: function (origin, callback) {
+        origin: (origin, callback) => {
 
+            // Postman / Render health checks
             if (!origin) return callback(null, true);
 
             if (allowedOrigins.includes(origin)) {
@@ -33,6 +34,7 @@ app.use(
             }
 
             return callback(new Error("Not allowed by CORS"));
+
         },
 
         credentials: true,
@@ -41,6 +43,7 @@ app.use(
             "GET",
             "POST",
             "PUT",
+            "PATCH",
             "DELETE",
             "OPTIONS"
         ],
@@ -52,7 +55,7 @@ app.use(
     })
 );
 
-app.options("*", cors());
+// ❌ Express 5 lo app.options("*", cors()) use cheyyakandi
 
 // ========================================
 // BODY PARSER
@@ -60,12 +63,12 @@ app.options("*", cors());
 
 app.use(express.json());
 
-app.use(
-    express.urlencoded({
-        extended: true
-    })
-);
+app.use(express.urlencoded({
+    extended: true
+}));
 
+// ========================================
+// SECURITY
 // ========================================
 
 app.use(helmet());
@@ -73,7 +76,7 @@ app.use(helmet());
 app.use(morgan("dev"));
 
 // ========================================
-// HEALTH
+// HEALTH CHECK
 // ========================================
 
 app.get("/", (req, res) => {
@@ -99,13 +102,11 @@ app.get("/api/health", (req, res) => {
 // ========================================
 
 app.use("/api/auth", authRoutes);
-
 app.use("/api/tickets", ticketRoutes);
-
 app.use("/api/chat", chatRoutes);
 
 // ========================================
-// ERROR
+// ERROR HANDLER
 // ========================================
 
 app.use(errorMiddleware);
