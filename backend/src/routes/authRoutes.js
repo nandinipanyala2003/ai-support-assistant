@@ -4,17 +4,17 @@ const router = express.Router();
 const authController = require("../controllers/authController");
 const authMiddleware = require("../middlewares/authMiddleware");
 
-// Register
+// ======================
+// AUTH ROUTES
+// ======================
+
+// Register user
 router.post("/register", authController.register);
 
-// Login
+// Login user
 router.post("/login", authController.login);
 
-// Profile
-router.get(
-    "/profile",
-    authMiddleware,
-    authController.profile
-);
+// Get logged-in user profile
+router.get("/profile", authMiddleware, authController.profile);
 
 module.exports = router;
