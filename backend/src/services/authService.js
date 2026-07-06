@@ -33,23 +33,49 @@ const registerUser = async (
 // ===============================
 // LOGIN USER
 // ===============================
-const loginUser = async (
-    email,
-    password
-) => {
+// const loginUser = async (
+//     email,
+//     password
+// ) => {
 
-    const user =
-        await userModel.findUserByEmail(email);
+//     const user =
+//         await userModel.findUserByEmail(email);
+
+//     if (!user) {
+//         throw new Error("User not found");
+//     }
+
+//     const isMatch =
+//         await bcrypt.compare(
+//             password,
+//             user.password_hash
+//         );
+
+//     if (!isMatch) {
+//         throw new Error("Invalid password");
+//     }
+
+//     return user;
+// };
+
+const loginUser = async (email, password) => {
+
+    console.log("LOGIN EMAIL =", email);
+
+    const user = await userModel.findUserByEmail(email);
+
+    console.log("DB USER =", user);
 
     if (!user) {
         throw new Error("User not found");
     }
 
-    const isMatch =
-        await bcrypt.compare(
-            password,
-            user.password_hash
-        );
+    const isMatch = await bcrypt.compare(
+        password,
+        user.password_hash
+    );
+
+    console.log("PASSWORD MATCH =", isMatch);
 
     if (!isMatch) {
         throw new Error("Invalid password");
