@@ -1,9 +1,12 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+    const navigate = useNavigate();
+
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -27,7 +30,7 @@ export const AuthProvider = ({ children }) => {
 
             // Small delay to allow React state update
             setTimeout(() => {
-                window.location.replace("/dashboard");
+                navigate("/dashboard");
             }, 100);
 
         } catch (error) {
@@ -59,7 +62,7 @@ export const AuthProvider = ({ children }) => {
             setUser(res.data.user);
 
             setTimeout(() => {
-                window.location.replace("/dashboard");
+                navigate("/dashboard");
             }, 100);
 
         } catch (error) {
@@ -132,7 +135,7 @@ export const AuthProvider = ({ children }) => {
 
         setUser(null);
 
-        window.location.replace("/login");
+        navigate("/login");
 
     };
 
